@@ -30,8 +30,8 @@ class Queue {
     void printQueue();	// 打印队列
 
   private:
-    Node<T> *head;
-    Node<T> *tail;
+    Node<T> *head;	// 队列头部节点
+    Node<T> *tail;	// 队列尾部节点
 };
 
 // 构造函数，初始化队列节点
@@ -39,8 +39,7 @@ template <class T>
 Queue<T>::Queue() {
     Node<T> *new_queue = new Node<T>();
     new_queue->next = NULL;
-    head = new_queue;
-    tail = new_queue;
+    head = tail = new_queue;
 
     cout << "初始化队列" << endl;
 }
@@ -102,7 +101,6 @@ bool Queue<T>::isEmpty() {
 // 获取队列大小
 template <class T>
 int Queue<T>::getSize() {
-
     int queue_size = 0;
     if(isEmpty()) {
         return queue_size;
