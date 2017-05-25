@@ -7,5 +7,5 @@
 
 2. [stack_2.cpp](https://github.com/vitahlin/Algorithm/blob/master/CLRS/Chapter10/stack_2.cpp) C++ 链表实现栈模版
 
-3. [queue_1.cpp](https://github.com/vitahlin/Algorithm/blob/master/CLRS/Chapter10/queue_1.cpp) C++ 链表实现栈模版
+3. [queue_1.cpp](https://github.com/vitahlin/Algorithm/blob/master/CLRS/Chapter10/queue_1.cpp) C++ 链表实现队列模版
  
