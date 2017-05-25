@@ -4,7 +4,7 @@
 * Created       : 2017-05-23 10:40
 * Last modified : 2017-05-23 10:40
 * Filename      : stack_1.cpp
-* Description   : 数组实现栈功能
+* Description   : C++数组实现栈模版
 =============================================================================*/
 
 #include<iostream>

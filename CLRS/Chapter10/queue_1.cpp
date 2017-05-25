@@ -4,7 +4,7 @@
 * Created       : 2017-05-25 16:24
 * Last modified : 2017-05-25 16:24
 * Filename      : queue_1.cpp
-* Description   : 通过链表实现队列模版
+* Description   : C++链表实现队列模版
 =============================================================================*/
 
 #include<iostream>

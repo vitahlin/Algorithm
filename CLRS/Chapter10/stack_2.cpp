@@ -4,7 +4,7 @@
 * Created       : 2017-05-23 17:20
 * Last modified : 2017-05-23 17:20
 * Filename      : stack_2.cpp
-* Description   : 链表实现栈功能
+* Description   : C++链表实现栈模版
 =============================================================================*/
 
 #include<iostream>
