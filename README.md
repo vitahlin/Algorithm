@@ -12,4 +12,6 @@
 4. [queue_2.cpp](https://github.com/vitahlin/Algorithm/blob/master/CLRS/Chapter10/queue_2.cpp) 数组实现循环队列模版
 
 5. [linkedlist_1.cpp](https://github.com/vitahlin/Algorithm/blob/master/CLRS/Chapter10/linkedlist_1.cpp) 单链表模版
+
+6. [linkedlist_2.cpp](https://github.com/vitahlin/Algorithm/blob/master/CLRS/Chapter10/linkedlist_2.cpp) 双向链表模版
  
