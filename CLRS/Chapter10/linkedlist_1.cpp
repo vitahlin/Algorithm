@@ -39,7 +39,7 @@ class LinkedList {
 template <class T>
 LinkedList<T>::LinkedList() {
     head = new Node<T>();
-    cout << "链表初始化" << endl;
+    cout << "链表初始化" << endl << endl;
 };
 
 // 析构函数，释放链表空间
