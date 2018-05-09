@@ -1,6 +1,4 @@
 /*==========================================================
-* Author        : vitah
-* Mail          : linw1225@163.com
 * Created       : 2017-05-25 23:22
 * Last modified : 2017-05-25 23:22
 * Filename      : queue_2.cpp

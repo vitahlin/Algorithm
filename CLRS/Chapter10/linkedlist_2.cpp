@@ -1,6 +1,4 @@
 /*==========================================================
-* Author        : vitah
-* Mail          : linw1225@163.com
 * Created       : 2017-05-31 12:15
 * Last modified : 2017-05-31 12:15
 * Filename      : linkedlist_2.cpp
