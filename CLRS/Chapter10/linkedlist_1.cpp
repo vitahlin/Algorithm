@@ -1,36 +1,31 @@
-/*==========================================================
-* Created       : 2017-05-31 10:43
-* Last modified : 2017-05-31 10:43
-* Filename      : linkedlist_1.cpp
-* Description   : C++ 单链表
-==========================================================*/
+/**
+ * 单链表
+ */
 
-
-#include<iostream>
+#include <iostream>
 using namespace std;
 
 template <class T>
 class Node {
-  public:
+   public:
     T data;
-    Node<T> *next;
+    Node<T>* next;
 };
 
 template <class T>
 class LinkedList {
-  private :
-    Node<T> *head;	// 链表头节点
+   private:
+    Node<T>* head;  // 链表头节点
 
-  public:
-    LinkedList();	// 构造函数
-    ~LinkedList();	// 析构函数
+   public:
+    LinkedList();   // 构造函数
+    ~LinkedList();  // 析构函数
 
-    bool insertNode(const T &, int insert_pos);
+    bool insertNode(const T&, int insert_pos);
     bool deleteNode(int del_pos);
 
-    int getSize(); // 获取当前链表中节点数量
-
-    void printLinkedList();	// 打印链表内容
+    int getSize();           // 获取当前链表中节点数量
+    void printLinkedList();  // 打印链表内容
 };
 
 // 构造函数，初始化链表头节点
@@ -44,9 +39,9 @@ LinkedList<T>::LinkedList() {
 template <class T>
 LinkedList<T>::~LinkedList() {
     int node_count = 0;
-    Node<T> *p = head->next;
-    while(head->next != NULL) {
-        Node<T> *p = head->next;
+    Node<T>* p = head->next;
+    while (head->next != NULL) {
+        Node<T>* p = head->next;
         head->next = p->next;
         delete p;
         node_count++;
@@ -62,8 +57,8 @@ template <class T>
 int LinkedList<T>::getSize() {
     int size = 0;
 
-    Node<T> *p = head->next;
-    while(p != NULL) {
+    Node<T>* p = head->next;
+    while (p != NULL) {
         size++;
         p = p->next;
     }
@@ -74,9 +69,9 @@ int LinkedList<T>::getSize() {
 // 打印链表中节点内容
 template <class T>
 void LinkedList<T>::printLinkedList() {
-    Node<T> *p = head->next;
+    Node<T>* p = head->next;
     cout << endl << "链表内容:" << endl << "[ ";
-    while(p != NULL) {
+    while (p != NULL) {
         cout << p->data << " ";
         p = p->next;
     }
@@ -86,24 +81,24 @@ void LinkedList<T>::printLinkedList() {
 // 增加节点，insert_pos 表示加在链表的第几个节点的后面
 // 1表示加上当前链表第一个节点的后面，0表示加在head的后面
 template <class T>
-bool LinkedList<T>::insertNode(const T &a, int insert_pos) {
-    if(insert_pos < 0) {
+bool LinkedList<T>::insertNode(const T& a, int insert_pos) {
+    if (insert_pos < 0) {
         cout << "加入位置不合法" << endl;
         return false;
     }
 
-    Node<T> *temp = head;
-    while(insert_pos > 0 && temp->next != NULL) {
+    Node<T>* temp = head;
+    while (insert_pos > 0 && temp->next != NULL) {
         insert_pos--;
         temp = temp->next;
     }
 
-    if(insert_pos > 0) {
+    if (insert_pos > 0) {
         cout << "插入位置超过当前链表大小" << endl;
         return false;
     }
 
-    Node<T> *new_node = new Node<T>();
+    Node<T>* new_node = new Node<T>();
     new_node->data = a;
     new_node->next = temp->next;
     temp->next = new_node;
@@ -114,18 +109,18 @@ bool LinkedList<T>::insertNode(const T &a, int insert_pos) {
 // 删除节点，del_pos表示要删除的节点位置(1表示链表不包括头节点的第一个节点)
 template <class T>
 bool LinkedList<T>::deleteNode(int del_pos) {
-    Node<T> *pre = head;
-    while(del_pos > 1 && pre->next != NULL) {
+    Node<T>* pre = head;
+    while (del_pos > 1 && pre->next != NULL) {
         del_pos--;
         pre = pre->next;
     }
 
-    if(del_pos > 1 || pre->next == NULL || del_pos <= 0) {
+    if (del_pos > 1 || pre->next == NULL || del_pos <= 0) {
         cout << "删除位置不合法" << endl;
         return false;
     }
 
-    Node<T> *del_node = pre->next;
+    Node<T>* del_node = pre->next;
     pre->next = del_node->next;
 
     cout << "删除节点：" << del_node->data << endl;
@@ -134,7 +129,7 @@ bool LinkedList<T>::deleteNode(int del_pos) {
 }
 
 int main() {
-    LinkedList<int> *my_list = new LinkedList<int>();
+    LinkedList<int>* my_list = new LinkedList<int>();
 
     my_list->insertNode(1, 0);
     my_list->insertNode(2, 0);
