@@ -1,24 +1,20 @@
-/*============================================================================
-* Created       : 2017-05-23 17:20
-* Last modified : 2017-05-23 17:20
-* Filename      : stack_2.cpp
-* Description   : C++链表实现栈模版
-=============================================================================*/
-
-#include<iostream>
+/**
+ * 链表实现栈
+ */
+#include <iostream>
 using namespace std;
 
 // 栈中每个元素的节点
 template <class T>
 class Node {
-  public:
+   public:
     T data;
-    Node<T> *next;
+    Node<T>* next;
 };
 
 template <class T>
 class Stack {
-  public:
+   public:
     Stack();
     ~Stack();
 
@@ -28,8 +24,8 @@ class Stack {
     bool isEmpty();
     void printStack();
 
-  private:
-    Node<T> *top;
+   private:
+    Node<T>* top;
 };
 
 // 构造函数，初始化空栈
@@ -43,8 +39,8 @@ Stack<T>::Stack() {
 template <class T>
 Stack<T>::~Stack() {
     int node_count = 0;
-    Node<T> *p = NULL;
-    while(top) {
+    Node<T>* p = NULL;
+    while (top) {
         p = top;
         top = top->next;
         delete p;
@@ -57,7 +53,7 @@ Stack<T>::~Stack() {
 // 判断栈是否为空
 template <class T>
 bool Stack<T>::isEmpty() {
-    if(top) {
+    if (top) {
         return false;
     }
 
@@ -67,8 +63,8 @@ bool Stack<T>::isEmpty() {
 // 出栈
 template <class T>
 bool Stack<T>::pop() {
-    if(!isEmpty()) {
-        Node<T> * p = top;
+    if (!isEmpty()) {
+        Node<T>* p = top;
 
         cout << "出栈 : " << p->data << endl;
 
@@ -82,8 +78,8 @@ bool Stack<T>::pop() {
 
 // 入栈
 template <class T>
-void Stack<T>::push(const T &a) {
-    Node<T> *p = new Node<T>();
+void Stack<T>::push(const T& a) {
+    Node<T>* p = new Node<T>();
 
     p->next = top;
     p->data = a;
@@ -94,9 +90,9 @@ void Stack<T>::push(const T &a) {
 
 template <class T>
 void Stack<T>::printStack() {
-    Node<T> *p = top;
+    Node<T>* p = top;
     cout << endl << "栈顶 ————> 栈底" << endl << "[ ";
-    while(p) {
+    while (p) {
         cout << p->data << " ";
         p = p->next;
     }
@@ -104,9 +100,8 @@ void Stack<T>::printStack() {
     cout << "]" << endl << endl;
 }
 
-
 int main() {
-    Stack<int> *my_stack = new Stack<int>();
+    Stack<int>* my_stack = new Stack<int>();
     my_stack->printStack();
 
     my_stack->push(5);
@@ -117,7 +112,6 @@ int main() {
 
     my_stack->pop();
     my_stack->printStack();
-
 
     my_stack->pop();
     my_stack->printStack();

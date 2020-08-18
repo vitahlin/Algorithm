@@ -1,7 +1,3 @@
-/**
- * 单链表
- */
-
 #include <iostream>
 using namespace std;
 
@@ -9,33 +5,35 @@ template <class T>
 class Node {
    public:
     T data;
+    Node<T>* prev;
     Node<T>* next;
 };
 
 template <class T>
 class LinkedList {
    private:
-    Node<T>* head;  // 链表头节点
+    Node<T>* head;
 
    public:
-    LinkedList();   // 构造函数
-    ~LinkedList();  // 析构函数
+    LinkedList();
+    ~LinkedList();
 
     bool insertNode(const T&, int insert_pos);
     bool deleteNode(int del_pos);
 
-    int getSize();           // 获取当前链表中节点数量
-    void printLinkedList();  // 打印链表内容
+    int getSize();
+    Node<T>* search(const T&);
+
+    void printLinkedList();
+    void printReverseLinkedList();
 };
 
-// 构造函数，初始化链表头节点
 template <class T>
 LinkedList<T>::LinkedList() {
     head = new Node<T>();
     cout << "链表初始化" << endl << endl;
 };
 
-// 析构函数，释放链表空间
 template <class T>
 LinkedList<T>::~LinkedList() {
     int node_count = 0;
@@ -48,11 +46,9 @@ LinkedList<T>::~LinkedList() {
     }
 
     delete head;
-
     cout << endl << "链表空间释放，共 " << node_count << " 个节点" << endl;
 };
 
-// 计算当前链表大小
 template <class T>
 int LinkedList<T>::getSize() {
     int size = 0;
@@ -66,17 +62,54 @@ int LinkedList<T>::getSize() {
     return size;
 }
 
+template <class T>
+Node<T>* LinkedList<T>::search(const T& a) {
+    Node<T>* temp = head->next;
+    int pos = 0;
+    while (temp != NULL) {
+        if (temp->data == a) {
+            break;
+        }
+
+        temp = temp->next;
+        pos++;
+    }
+
+    if (temp == NULL) {
+        cout << "搜索: " << a << "，未找到该节点" << endl;
+    } else {
+        cout << "搜索: " << a << "，找到该节点，位置: " << pos + 1 << endl;
+    }
+
+    return temp;
+}
+
 // 打印链表中节点内容
 template <class T>
 void LinkedList<T>::printLinkedList() {
     Node<T>* p = head->next;
-    cout << endl << "链表内容:" << endl << "[ ";
+    cout << endl << "链表内容:(头节点————>尾节点)" << endl << "[ ";
     while (p != NULL) {
         cout << p->data << " ";
         p = p->next;
     }
     cout << "]" << endl << endl;
 };
+
+template <class T>
+void LinkedList<T>::printReverseLinkedList() {
+    Node<T>* p = head;
+    while (p->next != NULL) {
+        p = p->next;
+    }
+
+    cout << endl << "链表内容:(尾节点————>头节点)" << endl << "[ ";
+    while (p != head) {
+        cout << p->data << " ";
+        p = p->prev;
+    }
+    cout << "]" << endl << endl;
+}
 
 // 增加节点，insert_pos 表示加在链表的第几个节点的后面
 // 1表示加上当前链表第一个节点的后面，0表示加在head的后面
@@ -87,10 +120,10 @@ bool LinkedList<T>::insertNode(const T& a, int insert_pos) {
         return false;
     }
 
-    Node<T>* temp = head;
-    while (insert_pos > 0 && temp->next != NULL) {
+    Node<T>* insert_pre = head;
+    while (insert_pos > 0 && insert_pre->next != NULL) {
         insert_pos--;
-        temp = temp->next;
+        insert_pre = insert_pre->next;
     }
 
     if (insert_pos > 0) {
@@ -100,8 +133,16 @@ bool LinkedList<T>::insertNode(const T& a, int insert_pos) {
 
     Node<T>* new_node = new Node<T>();
     new_node->data = a;
-    new_node->next = temp->next;
-    temp->next = new_node;
+
+    Node<T>* insert_next = insert_pre->next;
+    new_node->next = insert_next;
+    insert_pre->next = new_node;
+
+    new_node->prev = insert_pre;
+    if (insert_next != NULL) {
+        insert_next->prev = new_node;
+    }
+
     cout << "插入元素: " << a << endl;
     return true;
 }
@@ -121,7 +162,11 @@ bool LinkedList<T>::deleteNode(int del_pos) {
     }
 
     Node<T>* del_node = pre->next;
+    Node<T>* temp = del_node->next;
     pre->next = del_node->next;
+    if (temp != NULL) {
+        temp->prev = pre;
+    }
 
     cout << "删除节点：" << del_node->data << endl;
     delete del_node;
@@ -134,9 +179,13 @@ int main() {
     my_list->insertNode(1, 0);
     my_list->insertNode(2, 0);
     my_list->insertNode(3, 0);
-    my_list->printLinkedList();
 
-    my_list->deleteNode(2);
+    my_list->search(3);
+
+    my_list->printLinkedList();
+    my_list->printReverseLinkedList();
+
+    my_list->deleteNode(1);
     my_list->printLinkedList();
 
     delete my_list;
